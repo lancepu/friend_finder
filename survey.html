@@ -41,7 +41,7 @@
       <hr />
 
       <h3><strong>Question 1</strong></h3>
-      <h4>I keep constant update on the latest gaming news</h4>
+      <h4>You keep constant update on the latest gaming news</h4>
       <select class="chosen-select" id="q1">
         <option value=""></option>
         <option value="1">1 (Strongly Disagree)</option>
@@ -52,7 +52,7 @@
       </select>
 
       <h3><strong>Question 2</strong></h3>
-      <h4>I often visit forums to keep tabs on my favorite games</h4>
+      <h4>You often visit forums to keep tabs on your favorite games</h4>
       <select class="chosen-select" id="q2">
         <option value=""></option>
         <option value="1">1 (Strongly Disagree)</option>
@@ -63,10 +63,7 @@
       </select>
 
       <h3><strong>Question 3</strong></h3>
-      <h4>
-        You find it easy to stay relaxed and focused even when there is some
-        pressure.
-      </h4>
+      <h4>You prioritize side quests instead of main quests</h4>
       <select class="chosen-select" id="q3">
         <option value=""></option>
         <option value="1">1 (Strongly Disagree)</option>
@@ -77,7 +74,7 @@
       </select>
 
       <h3><strong>Question 4</strong></h3>
-      <h4>You rarely do something just out of sheer curiosity.</h4>
+      <h4>You rarely rely on strategy guides or walkthroughs</h4>
       <select class="chosen-select" id="q4">
         <option value=""></option>
         <option value="1">1 (Strongly Disagree)</option>
@@ -88,7 +85,7 @@
       </select>
 
       <h3><strong>Question 5</strong></h3>
-      <h4>People can rarely upset you.</h4>
+      <h4>You own multiple gaming consoles</h4>
       <select class="chosen-select" id="q5">
         <option value=""></option>
         <option value="1">1 (Strongly Disagree)</option>
@@ -99,9 +96,7 @@
       </select>
 
       <h3><strong>Question 6</strong></h3>
-      <h4>
-        It is often difficult for you to relate to other people’s feelings.
-      </h4>
+      <h4>You prefer multiplayer games</h4>
       <select class="chosen-select" id="q6">
         <option value=""></option>
         <option value="1">1 (Strongly Disagree)</option>
@@ -112,10 +107,7 @@
       </select>
 
       <h3><strong>Question 7</strong></h3>
-      <h4>
-        In a discussion, truth should be more important than people’s
-        sensitivities.
-      </h4>
+      <h4>You can endure long gaming sessions (> 3 hours)</h4>
       <select class="chosen-select" id="q7">
         <option value=""></option>
         <option value="1">1 (Strongly Disagree)</option>
@@ -126,7 +118,7 @@
       </select>
 
       <h3><strong>Question 8</strong></h3>
-      <h4>You rarely get carried away by fantasies and ideas.</h4>
+      <h4>You focus on playing a single game</h4>
       <select class="chosen-select" id="q8">
         <option value=""></option>
         <option value="1">1 (Strongly Disagree)</option>
@@ -137,10 +129,7 @@
       </select>
 
       <h3><strong>Question 9</strong></h3>
-      <h4>
-        You think that everyone’s views should be respected regardless of
-        whether they are supported by facts or not.
-      </h4>
+      <h4>You strongly defend your favorite games with your friends</h4>
       <select class="chosen-select" id="q9">
         <option value=""></option>
         <option value="1">1 (Strongly Disagree)</option>
@@ -151,9 +140,7 @@
       </select>
 
       <h3><strong>Question 10</strong></h3>
-      <h4>
-        You feel more energetic after spending time with a group of people.
-      </h4>
+      <h4>You prefer using mouse and keyboard</h4>
       <select class="chosen-select" id="q10">
         <option value=""></option>
         <option value="1">1 (Strongly Disagree)</option>
@@ -179,8 +166,11 @@
       <footer class="footer">
         <div class="container">
           <p>
-            <a href="/api/friends">API Friends List</a> |
-            <a href="https://github.com/afhaque/friendfinder">GitHub Repo</a>
+            <a href="/api/friends" target="_blank">API Friends List</a> |
+            <a href="https://github.com/lancepu/friend_finder" target="_blank"
+              >GitHub Repo</a
+            >
+            | <a href="/">Home</a>
           </p>
         </div>
       </footer>
@@ -192,18 +182,11 @@
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">
-              &times;
-            </button>
             <h2 class="modal-title"><strong>Best Match</strong></h2>
           </div>
           <div class="modal-body">
             <h2 id="match-name"></h2>
-            <img
-              id="match-img"
-              src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg"
-              alt=""
-            />
+            <a id="match-profile" href="" target="_blank"></a>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">
@@ -262,7 +245,7 @@
           // Create an object for the user"s data
           var userData = {
             name: $("#name").val(),
-            photo: $("#photo").val(),
+            connect: $("#photo").val(),
             scores: [
               $("#q1").val(),
               $("#q2").val(),
@@ -280,8 +263,9 @@
           // AJAX post the data to the friends API.
           $.post("/api/friends", userData, function(data) {
             // Grab the result from the AJAX post so that the best match's name and photo are displayed.
-            $("#match-name").text(data.name);
-            $("#match-img").attr("src", data.photo);
+            $("#match-name").html(data.name);
+            $("#match-profile").attr("href", data.connect);
+            $("#match-profile").html(data.connect);
 
             // Show the modal with the best match
             $("#results-modal").modal("toggle");
