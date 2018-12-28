@@ -1,0 +1,19 @@
+@font-face {
+  font-family: "hylia_serif_betaregular";
+  src: url("../font/hylia_serif/hyliaserifbeta-regular-webfont.woff2")
+      format("woff2"),
+    url("../font/hylia_serif/hyliaserifbeta-regular-webfont.woff")
+      format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: "hylia_serif_betaregular";
+  font-weight: normal;
+  font-style: normal;
+}
+
+.fa-gamepad {
+  color: #e0c039;
+}

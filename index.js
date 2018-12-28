@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "/static")));
 app.use(favicon(path.join(__dirname, "favicon.ico")));
 
 app.get("/", (req, res) => {
